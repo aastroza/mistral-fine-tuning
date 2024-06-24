@@ -1,4 +1,4 @@
-# Mistral Fine-tuning Hackaton
+# Mistral AI Fine-tuning Hackaton
 
 ## Summary
 
