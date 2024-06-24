@@ -1,6 +1,6 @@
 # Mistral AI Fine-tuning Hackaton
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/XbIbgFgQVmQ?si=a0M9WM7BuzrsSot7" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+[![YouTube](http://i.ytimg.com/vi/XbIbgFgQVmQ/hqdefault.jpg)](https://www.youtube.com/watch?v=XbIbgFgQVmQ)
 
 ## Summary
 
