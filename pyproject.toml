@@ -12,6 +12,7 @@ dependencies = [
     "jupyter>=1.0.0",
     "loguru>=0.7.2",
     "python-dotenv>=1.0.1",
+    "matplotlib>=3.9.0",
 ]
 readme = "README.md"
 requires-python = ">= 3.8"
