@@ -160,7 +160,7 @@ async def extract_graph(text: str, language: str) -> KnowledgeGraph:
     )
 
 async def extract_graph_mistral(text: str, language: str) -> KnowledgeGraph:
-    return await client.chat.completions.create(
+    return await patched_client.chat.completions.create(
         model="mistral-large-latest",
         messages=[
             {
