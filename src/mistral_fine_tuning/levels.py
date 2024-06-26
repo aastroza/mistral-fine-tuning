@@ -1,5 +1,5 @@
-import asyncio
 from openai import AsyncOpenAI
+from mistralai.async_client import MistralAsyncClient
 import instructor
 from pydantic import BaseModel, Field
 from typing import List
@@ -8,6 +8,9 @@ from dotenv import load_dotenv
 load_dotenv()
 
 client = instructor.patch(AsyncOpenAI())
+
+mistral_client = MistralAsyncClient()
+patched_client = instructor.from_mistral(client=mistral_client, mode=instructor.Mode.MISTRAL_TOOLS)
 
 class Node(BaseModel):
     id: int
@@ -156,21 +159,26 @@ async def extract_graph(text: str, language: str) -> KnowledgeGraph:
         response_model=KnowledgeGraph,
     )
 
-async def main():
-
-    dataset = [
-        "Muchas veces uno se da inmediatamente cuenta cuando alguien es cuico. Cuando iba al recreo, agarraba una pelota de esas de mapamundi; le pegabas una patada y te daba vuelta la rodilla. Y yo cachaba a estos otros huevones que agarraban su cuaderno y bajaban a jugar pádel"
-    ]
-
-    sem = asyncio.Semaphore(2)
-
-    async def rate_limited_extract_graph(text: str) -> KnowledgeGraph:
-        async with sem:
-            return await extract_graph(text, "es")
-
-    tasks_get_graphs = [rate_limited_extract_graph(text) for text in dataset]
-    resp = await asyncio.gather(*tasks_get_graphs)
-    print("asyncio.gather (rate limited):", resp)
-
-if __name__ == "__main__":
-    asyncio.run(main())
+async def extract_graph_mistral(text: str, language: str) -> KnowledgeGraph:
+    return await client.chat.completions.create(
+        model="mistral-large-latest",
+        messages=[
+            {
+                "role": "system",
+                "content": SYSTEM_PROMPT
+            },
+            {
+                "role": "user",
+                "content": f"I have added a feature that forces you to response only in `locale={language}` and consider only chilean spanish.",
+            },
+            {
+                "role": "assistant",
+                "content": f"Understood thank you. From now I will only response with `locale={language}`",
+            },
+            {"role": "user",
+             "content": f"Help me understand the following joke by describing it as a detailed knowledge graph of mindstates: {text}"
+             },
+        ],
+        temperature=0.8,
+        response_model=KnowledgeGraph,
+    )
