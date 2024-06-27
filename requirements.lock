@@ -49,6 +49,8 @@ certifi==2024.6.2
     # via requests
 cffi==1.16.0
     # via argon2-cffi-bindings
+chardet==5.2.0
+    # via mistral-fine-tuning
 charset-normalizer==3.3.2
     # via requests
 click==8.1.7
