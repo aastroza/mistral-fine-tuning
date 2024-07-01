@@ -15,17 +15,20 @@ A [website](https://www.datarisas.cl/) was developed to compare our model agains
 Run the following Jupyter notebooks:
 
 1. [Extract jokes from transcripts](/notebooks/01_extract_jokes_from_transcripts.ipynb)
-2. Generate a LLM instruction dataset
-3. Fine-tune graph generator model
-4. Fine-tune joke generator model
-5. Model evaluation
+2. [Refine jokes to build a fine-tuning dataset](/notebooks/02_refine_jokes_dataset.ipynb)
+3. [Prepare the fine-tuning dataset](/notebooks/03_prepare_dataset.ipynb)
+4. [Build baselines, fine-tune and evaluation](/notebooks/04_building_baselines_and_fine_tuning.ipynb)
 
 ## Documentation
 
+### Motivation
+
 ### Extracting jokes from Youtube transcripts
 
-### Generating a dataset for LLM instruction finetuning
+### Generating a dataset for LLM fine-tuning
 
 ### Fine-tuning the models
 
-### Models evaluation
+### Model evaluation
+
+### Future Work
