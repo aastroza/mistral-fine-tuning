@@ -2,7 +2,7 @@
 
 ## Summary
 
-**[[Video]](https://www.youtube.com/watch?v=XbIbgFgQVmQ)**
+**[[Video]](https://www.youtube.com/watch?v=Wb4J4xOhjGo)**
 
 Generative AI is revolutionizing communication worldwide. However, current models are [predominantly trained in standard English](https://blog.modernmt.com/making-generative-ai-multilingual-at-scale/), neglecting other languages like the unique Spanish dialect spoken in Chile. This dialect is considered [highly disruptive globally](https://www.elmundo.es/cultura/2021/11/30/61a4a36321efa013518b4571.html) due to its rapid evolution in spoken and written language, creation of new words, and flexible rules of pronunciation. Adapting AI models to this Chilean dialect poses a challenge, requiring a curated database reflecting the language's evolution for accuracy.
 
