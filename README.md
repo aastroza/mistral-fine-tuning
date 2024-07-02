@@ -38,7 +38,10 @@ The legendary filmmaker [Raúl Ruiz](https://www.ojoentinta.com/chile-segun-raul
 
 >"What I like about Chile is that special way Chileans have of speaking. Chileans are sometimes capable of speaking without using either verb or subject, or they use verbs and the subject displaced, which makes them talk for hours and you don't know what about. Every Chilean speaks exclusively in quotation marks. It's someone who puts rhetoric before reality. Chile manufactures a very curious form of artificial language in which intonation is almost as important as the words that are uttered. More than the accent, it's the strange syntax. One starts a sentence and ends with ellipsis, starts another and another, and what happens is that people are speaking with three parallel discourses."
 
-![image](https://github.com/aastroza/mistral-fine-tuning/assets/8590877/a6446b32-dba7-4b20-a32c-0e99923bd9e6)
+<figure>
+  <img src="https://github.com/aastroza/mistral-fine-tuning/assets/8590877/a6446b32-dba7-4b20-a32c-0e99923bd9e6" alt="Spanish Dialects Difficulty Map" style="width: 50%;">
+  <figcaption>A popular meme illustrating the perceived difficulty of understanding Spanish dialects across different regions.</figcaption>
+</figure>
 
 Adapting models to this Chilean dialect requires more than simple translation. It demands a deep understanding of the cultural context, linguistic nuances, and the ever-evolving nature of the language. To achieve this, we need to curate a reliable written record that captures the essence of Chilean Spanish, reflecting its evolution while ensuring quality and representativeness.
 
