@@ -44,15 +44,26 @@ An unexpected but rich source for this linguistic data lies in Chile's vibrant c
 
 Developing a model specialized in Chilean Spanish is not just about preserving linguistic diversity. It's about ensuring that as AI-mediated communication becomes ubiquitous, Chilean voices are not left behind. This project aims to bridge the gap between global advancements and local linguistic realities. It aims to create a model that can truly understand and interact with Chilean Spanish speakers.
 
-### Extracting jokes from Youtube transcripts
+### Data
 
-### Generating a dataset for LLM fine-tuning
+#### Extracting jokes from Youtube transcripts
 
-### Fine-tuning the models
+#### Ensuring quality
 
-### Model evaluation
+### Fine-tuning
+
+#### Using Mistral API + Weave
+
+#### Creating baselines
+
+#### Model evaluation
 
 ### Future Work
 
 
 ## Acknowledgments
+
+
+- [**Mastering LLMs: A Conference For Developers & Data Scientists**](https://maven.com/parlance-labs/fine-tuning) by [Dan Becker](https://github.com/dansbecker) and [Hamel Husain](https://github.com/hamelsmu). This course provided an excellent introduction to fine-tuning and inspired my participation in the [Mistral AI fine-tuning hackathon](https://mistral.ai/news/2024-ft-hackathon/). Special thanks to [Sophia Yang](https://github.com/sophiamyang) (Mistral AI) for her insights on the Mistral API, and [Thomas Capelle](https://github.com/tcapelle) (W&B) for his teachings on the impressive [Weave](https://wandb.github.io/weave/) framework. Much of the code and many ideas in this project were drawn from their invaluable lessons.
+
+- [**Instructor**](https://github.com/jxnl/instructor): This tool was a big help in our project. It allowed us to add structure to the output from the Mistral API. This made it much easier to process our data and create a high-quality dataset for fine-tuning.
