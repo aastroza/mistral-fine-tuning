@@ -65,7 +65,7 @@ Developing a model specialized in Chilean Spanish is not just about preserving l
 
 
 - [**Mastering LLMs: A Conference For Developers & Data Scientists**](https://maven.com/parlance-labs/fine-tuning) by [Dan Becker](https://github.com/dansbecker) and [Hamel Husain](https://github.com/hamelsmu). This course provided an excellent introduction to fine-tuning and inspired my participation in the [Mistral AI fine-tuning hackathon](https://mistral.ai/news/2024-ft-hackathon/).
-    - Special thanks to [Sophia Yang](https://github.com/sophiamyang) (Mistral AI) for her insights on the Mistral API, and [Thomas Capelle](https://github.com/tcapelle) (W&B) for his teachings on the impressive [Weave](https://wandb.github.io/weave/) framework. Much of the code and many ideas in this project were drawn from their invaluable lessons.
+    - Special thanks to [Sophia Yang](https://github.com/sophiamyang) (Mistral AI) for her insights on the Mistral API, and [Thomas Capelle](https://github.com/tcapelle) (W&B) for his teachings on the impressive [Weave](https://wandb.github.io/weave/) toolkit. Much of the code and many ideas in this project were drawn from their invaluable lessons.
 
 - [**Instructor**](https://github.com/jxnl/instructor): This tool was a significant help in our project. It allowed us to add structure to the output from the Mistral API, making it much easier to process our data and create a high-quality dataset for fine-tuning.
 
