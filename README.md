@@ -42,13 +42,62 @@ Adapting models to this Chilean dialect requires more than simple translation. I
 
 An unexpected but rich source for this linguistic data lies in Chile's vibrant comedy scene. The [Viña del Mar Festival](https://en.wikipedia.org/wiki/Vi%C3%B1a_del_Mar_International_Song_Festival), showcases the country's top comedians and offers a treasure trove of uniquely Chilean expressions, wordplay, and cultural references. Held annually since 1960, the festival presents Chilean humor, known for its eccentricity – from talking puppets to trampoline-jumping comedians. This humor often features dialogues that are incomprehensible to non-Chilean Spanish speakers, making it an ideal dataset for training LLMs in the intricacies of Chilean Spanish.
 
-Developing a model specialized in Chilean Spanish is not just about preserving linguistic diversity. It's about ensuring that as AI-mediated communication becomes ubiquitous, Chilean voices are not left behind. This project aims to bridge the gap between global advancements and local linguistic realities. It aims to create a model that can truly understand and interact with Chilean Spanish speakers.
+Developing a model specialized in Chilean Spanish is not just about preserving linguistic diversity. It's about ensuring that as AI-mediated communication becomes ubiquitous, Chilean voices are not left behind. This project aims to bridge the gap between global advancements and local linguistic realities. The goal is to create a LLM that can authentically understand and interact with Chilean Spanish speakers, reflecting their unique expressions and cultural context.
 
 ### Data
 
 #### Extracting jokes from Youtube transcripts
 
+```python
+class Segment:
+    start_time: float
+    end_time: float
+    transcript: str
+```
+
+```python
+class Joke(BaseModel):
+    transcript: str = Field(
+        description="The joke transcript. Do not include comments, greetings, or any other non-joke content."
+    )
+    corrected_transcript: str = Field(
+        description="The corrected joke transcript. Clean the transcript from any unnecessary content. Fix typos. Ensure correct use of punctuation. Make sure the joke is clean like a historical quote."
+    )
+
+class Repertoire(BaseModel):
+    jokes: List[Joke]
+```
+
 #### Ensuring quality
+
+```python
+class Node(BaseModel):
+    id: int
+    label: str
+
+class Edge(BaseModel):
+    source: int
+    target: int
+    label: str
+
+class KnowledgeGraph(BaseModel):
+    nodes: List[Node] = Field(..., default_factory=list)
+    edges: List[Edge] = Field(..., default_factory=list)
+```
+
+```python
+class Quality(Enum):
+    FUNNY = "funny"
+    NOT_FUNNY = "not_funny"
+
+class Refinement(BaseModel):
+    text: str = Field(..., description="The corrected joke text. Fix grammar. Fix typos and missing characters. Ensure correct use of punctuation.")    
+    keywords: List[str] = Field(..., default_factory=list, description="The corrected keywords array")
+    quality: Quality = Field(..., description="The quality of the joke")
+
+class Rewrite(BaseModel):
+    rewritten_text: str = Field(..., description="The rewritten joke. Maintaining the original humorous style but improving its grammar, punctuation, and presentation.")
+```
 
 ### Fine-tuning
 
@@ -56,7 +105,50 @@ Developing a model specialized in Chilean Spanish is not just about preserving l
 
 #### Creating baselines
 
+```python
+class MistralModel(weave.Model):
+    model: str
+    temperature: float = 0.7
+    
+    @weave.op
+    def create_messages(self, keyword:str):
+        return create_messages(keyword)
+
+    @weave.op
+    async def predict(self, keyword:str):
+        messages = self.create_messages(keyword)
+        return await call_mistral(model=self.model, messages=messages)
+```
+
 #### Model evaluation
+
+```python
+class LLMJudge(weave.Model):
+    model: str = "mistral-large-latest"
+    
+    @weave.op
+    async def predict(self, keyword: str, mistral_7b: str, mistral_medium: str, text: str, **kwargs) -> dict:
+        messages = [
+            ChatMessage(
+                role="user",
+                content=(
+                "You are a world class comedian and you are judging a joke competition in Chile."
+                "You have to pick the best joke between two jokes written about a keyword."
+                "Take into consideration the jokes were written in Chilean Spanish and a ground truth joke as a reference. \n"
+                "Here is the keyword: {keyword}\n"
+                "Here is the joke1: {mistral_7b}\n"
+                "Here is the joke2: {mistral_medium}\n"
+                "Ground truth joke: {joke}\n"
+                "Return the name of the best_joke (or None if you think both are bad) and the reason in short JSON object.").format(
+                    keyword=keyword, 
+                    mistral_7b=mistral_7b, 
+                    mistral_medium=mistral_medium,
+                    joke=text)
+            )
+        ]
+        payload = await call_mistral(model=self.model, messages=messages, response_format={"type": "json_object"})
+        return json.loads(payload)
+```
 
 ### Future Work
 
